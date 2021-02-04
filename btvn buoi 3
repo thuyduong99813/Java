@@ -1,0 +1,17 @@
+package baitapvn;
+
+public class bt1 {
+    //1. Viết method nhận vào 2 mảng bất kỳ,
+    // hãy tỉnh tổng hai mảng này. tong[i]= A[i] + B[i]. Viết test cho method này
+    public static int[] tonghaimang(String[] args) {
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {6, 7, 8, 9, 10};
+        int sum = 0;
+        for (int i = 0; i < array1.length ; i++) {
+            sum = array1[i] + array2[i];
+            System.out.println("Tổng 2 mảng của phần tử thứ " + i + " là: " + sum);
+        }
+        return array1;
+    }
+
+}
