@@ -1,0 +1,31 @@
+package baitapvn;
+
+public class bt3 {
+//    Viết method nhận vào hai mảng số nguyên,
+//    hãy liệt kê các số chỉ xuất hiện duy nhất trong 1 mảng. Viết test cho method này
+    public static boolean check(int a, int b[]) {
+    for (int i = 0; i < b.length; i++) {
+        if (a == b[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+    public static void main(String[] args) {
+
+        int[] array1 = {1, 2, 3, 4, 5, 6, 7};
+        int[] array2 = {6, 7, 8, 9, 10};
+
+        for (int i = 0; i < array1.length; i++) {
+            if (check(array1[i], array2) == true) {
+                System.out.println(array1[i]);
+
+            }
+        }
+        for (int i = 0; i < array2.length; i++) {
+            if (check(array2[i], array1) == true) {
+                System.out.println(array2[i]);
+            }
+        }
+    }
+}
