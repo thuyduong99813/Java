@@ -1,0 +1,16 @@
+package baitapvn;
+
+public class bt2 {
+    //2. Viết method nhận vào hai mảng số nguyên,
+    // hãy liệt kê các phần tử có trong cả hai mảng. Viết test cho method này
+    public static void main(String[] args) {
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {6, 7, 8, 9, 10};
+        for (int i = 0; i < array1.length; i++) {
+            System.out.println(array1[i]);
+        }
+        for (int i = 0; i < array2.length; i++) {
+            System.out.println(array2[i]);
+        }
+    }
+}
