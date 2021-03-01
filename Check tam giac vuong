@@ -5,12 +5,16 @@ import java.util.Scanner;
 public class Vidu2 {
     //2. Viết method CheckTangiacVuong nhận vào 3 số nguyên, kiểm tra xem có phải là 3 cạnh tam giác vuông ko?
     public static void main(String[] args) {
+       boolean Result = CheckTangiacVuong();
+       System.out.println(Result);
+    }
+    public static boolean CheckTangiacVuong() {
         int a = 3;
         int b = 4;
         int c = 5;
-        boolean re1 = (a*a + b*b) == c*c;
-        boolean re2 = (c*c + b*b) == b*b;
-        boolean re3 = (c*c + b*b) == a*a;
-        System.out.println(re1 || re2 || re3);
+        boolean re1 = (a * a + b * b) == c * c;
+        boolean re2 = (c * c + b * b) == b * b;
+        boolean re3 = (c * c + b * b) == a * a;
+        return re1 || re2 || re3;
     }
 }
