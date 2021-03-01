@@ -1,0 +1,12 @@
+package Javacore;
+
+import java.util.Scanner;
+
+public class Vidu1 {
+    //1. Viết method CheckOrderNumber nhận vào một số sau đó kiểm tra số đó có phải là số chẵn hay không?
+    public static void main(String[] args) {
+        int a = 8;
+        boolean check = (a%2==0);
+        System.out.println("Số " +a+ " là số chẵn? " +check);
+    }
+}
