@@ -15,6 +15,9 @@ public class Vidu5 {
         else {
             System.out.println("Đây không phải là số nguyên tố");
         }
+        int result5;
+        result5 = Tongsonguyento();
+        System.out.println("Tổng các số nguyên tố có 2 chữ số là: " +result5);
 
     }
     //Bài 4: Viết method nhận vào một số sau đó kiểm tra xem số đó có phải là số nguyên tố không?
@@ -33,4 +36,13 @@ public class Vidu5 {
         }
     }
     //Bài 5: Viết method tính tổng tất cả các số nguyên tố có 2 chữ số sử dụng method viết ở bài 4.
+    public static int Tongsonguyento(){
+        int tong=0;
+        for (int i = 10; i < 100; i++) {
+            if (Checksonguyento(i)==true){
+                tong = tong+i;
+            }
+        }
+        return tong;
+    }
 }
