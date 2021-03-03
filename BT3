@@ -1,0 +1,25 @@
+package Javacore;
+
+import java.util.Scanner;
+
+public class Vidu4 {
+    //Bài 3: Viết method nhận vào một số sau đó tỉnh tổng các số nhỏ hơn số đó.
+    public static void main(String[] args) {
+        int result;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập số bất kỳ: ");
+        int number = scanner.nextInt();
+        result = Tongcacsonhohon(number);
+        System.out.println("Tổng các số nhỏ hơn " +number+ " là: " + result);
+    }
+    public static int Tongcacsonhohon(int number){
+        int tong=0;
+        for (int i = 0; i < number; i++) {
+            if (i<number){
+                tong = tong +i;
+            }
+        }
+       return tong;
+    }
+
+}
