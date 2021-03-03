@@ -1,0 +1,36 @@
+package Javacore;
+
+import java.util.Scanner;
+
+public class Vidu5 {
+    public static void main(String[] args) {
+        boolean result;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Nhập số bất kỳ: ");
+        int number = scanner.nextInt();
+        result = Checksonguyento(number);
+        if (result == true){
+            System.out.println("Đây là số nguyên tố");
+        }
+        else {
+            System.out.println("Đây không phải là số nguyên tố");
+        }
+
+    }
+    //Bài 4: Viết method nhận vào một số sau đó kiểm tra xem số đó có phải là số nguyên tố không?
+    public static boolean Checksonguyento(int number){
+        if (number<2){
+            return true;
+        }
+        else {
+            boolean result = true;
+            for (int i = 2; i < number; i++) {
+                if (number%i == 0){
+                    result = false;
+                }
+            }
+            return result;
+        }
+    }
+    //Bài 5: Viết method tính tổng tất cả các số nguyên tố có 2 chữ số sử dụng method viết ở bài 4.
+}
