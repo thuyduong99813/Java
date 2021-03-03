@@ -1,0 +1,33 @@
+package Javacore;
+
+public class Vidu3 {
+//    Bài 1: Viết method tính tổng các số chẵn từ 1 đến 100;
+    public static void main(String[] args) {
+        int result = Tongcacsochan();
+        System.out.println("Tổng các số chẵn từ 1 đến 100 là: "+result);
+        //2
+        int result2 = Tongcacsochiahetcho3();
+        System.out.println("Tổng các số từ 1 đến 100 chia hết cho 3 là: "+result2);
+
+    }
+    public static int Tongcacsochan () {
+        int tong = 0;
+        for (int i = 1; i <= 100; i++) {
+            if (i%2==0){
+                tong = tong + i;;
+            }
+        }
+        return tong;
+    }
+    //    Bài 2: Viết method tính tổng các số từ 1 đến 100 mà chia hết cho 3
+    public static int Tongcacsochiahetcho3 (){
+        int tong = 0;
+        for (int i = 1; i <= 100 ; i++) {
+            if (i%3==0){
+                tong = tong +i;
+            }
+        }
+        return tong;
+    }
+}
+
