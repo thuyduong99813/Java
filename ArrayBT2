@@ -1,0 +1,49 @@
+package Array;
+
+public class BT2 {
+    //Bài 2: Viết method nhận vào 2 mảng số nguyên, sau đó tính tổng của hai mảng này.
+    //Tổng của hai mảng là một mảng thõa mãn điều kiện: T[i] = A[i] + B[i];
+    //Viết testmethod cho method này.
+    public static int[] tonghaimang(int[] array1, int[] array2) {
+        int[] sum;
+        if (array1.length < array2.length) {
+            sum = new int[array1.length];
+            for (int i = 0; i < array1.length; i++) {
+                sum[i] = array1[i] + array2[i];
+            }
+            return sum;
+        } else {
+            sum = new int[array2.length];
+            for (int i = 0; i < array2.length; i++) {
+                sum[i] = array1[i] + array2[i];
+            }
+            return sum;
+        }
+    }
+}
+
+
+
+---------------------------------------------------------------------------------
+
+
+
+package TestArray;
+
+import Array.BT2;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class TestBT2 {
+    @Test
+    public void test() {
+
+        int[] array1 = {1, 2, 3, 4};
+        int[] array2 = {6, 7, 8, 9, 10};
+        int[] expected = {7, 9, 11, 13, 10};
+        int[] actual = BT2.tonghaimang(array1, array2);
+        Assert.assertArrayEquals(expected, actual);
+    }
+}
+
+
