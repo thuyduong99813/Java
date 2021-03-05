@@ -1,0 +1,52 @@
+package Array;
+
+import java.util.ArrayList;
+
+public class BT1 {
+    //Bài 1: Viết method nhận vào 2 mảng số nguyên, sau đó lọc ra các phần tử chỉ xuất hiện trong
+    //một mảng, viết testmethod cho method vừa viết.
+    public static ArrayList<Integer> Locmang(int[] a1, int[] a2) {
+        ArrayList<Integer> Filter = new ArrayList<>();
+        for (int p1 : a1) {
+            boolean check = true;
+            for (int p2 : a2) {
+                if (p1 == p2) {
+                    check = false;
+                }
+            }
+            if (check == true) {
+                Filter.add(p1);
+            }
+        }
+        return Filter;
+    }
+}
+
+--------------------------------------------------------------------------------------------------
+
+
+package TestArray;
+
+import Array.BT1;
+import jdk.jfr.StackTrace;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertArrayEquals;
+
+public class TestBT1 {
+    @Test
+    public void TestLocmang(){
+        int[] a1 = {1, 3, 4};
+        int[] a2 = {1, 3, 9, 8};
+        int[] expected = {4, 9, 8};
+        ArrayList<Integer> actual = BT1.Locmang(a1, a2);
+        assertArrayEquals(expected,actual);
+    }
+
+    private void assertArrayEquals(int[] expected, ArrayList<Integer> actual) {
+    }
+
+}
