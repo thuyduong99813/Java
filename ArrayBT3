@@ -1,0 +1,67 @@
+package Array;
+
+import java.util.ArrayList;
+
+public class BT3 {
+    //Bài 3: Viết method nhận vào một mảng các số nguyên, sau đó lọc ra các số nguyên tố có trong
+    // mảng (sử dụng method CheckSNT viết trong bài trước). Viết testmethod cho method này.
+    public static ArrayList<Integer> LocSNTtrongmang (int[] array) {
+        ArrayList<Integer> Store = new ArrayList<>();
+        for (int p1 : array) {
+            boolean check = false;
+            for (int i = 0; i < array.length; i++) {
+                if (Checksonguyento(i) == true) {
+                    check = true;
+                }
+            }
+            if (check == true) {
+                Store.add(p1);
+            }
+        }
+        return Store;
+    }
+
+
+    public static boolean Checksonguyento (int number){
+        if (number<2){
+            return true;
+        }
+        else {
+            boolean result = true;
+            for (int i = 2; i < number; i++) {
+                if (number%i == 0){
+                    result = false;
+                }
+            }
+            return result;
+        }
+    }
+}
+
+
+---------------------------------------------------------------------------------
+
+
+
+
+package TestArray;
+
+import Array.BT1;
+import Array.BT3;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+public class TestBT3 {
+    @Test
+    public void TestLocSNT() {
+        int[] a1 = {1, 3, 4, 9};
+        int[] expected = {4};
+        ArrayList<Integer> actual = BT3.LocSNTtrongmang(a1);
+        assertArrayEquals(expected,actual);
+    }
+
+    private void assertArrayEquals(int[] expected, ArrayList<Integer> actual) {
+    }
+}
