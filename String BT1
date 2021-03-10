@@ -1,0 +1,14 @@
+package javastring;
+
+public class BT1 {
+    public static void main(String[] args) {
+        //Bài 1: Cho một chuỗi số hãy tính tổng các số có trong chuỗi đó.
+        String chuoi = "123456";
+        int tong = 0;
+        for (int i = 0; i < chuoi.length(); i++) {
+            tong = tong + Integer.parseInt(String.valueOf(chuoi.charAt(i)));
+        }
+        System.out.println(tong);
+
+    }
+}
