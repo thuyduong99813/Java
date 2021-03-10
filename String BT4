@@ -1,0 +1,18 @@
+package javastring;
+
+public class BT4 {
+    public static void main(String[] args) {
+        //Bài 4: CHo một chuỗi họ và tên bất kỳ, hãy đảo ngược các từ có trong chuỗi
+        //"Tran Xuan Khanh" -> "Khanh Xuan Tran"
+        String text = "Vũ Thùy Dương";
+        // StringBuiler để tạo ra 1 chuỗi có thể thay đổi
+        // Hàm append để nối thêm tham số vào cuối chuỗi
+        StringBuilder newtext = new StringBuilder();
+        String[] words = text.split(" ");
+        // vòng for để đảo chuỗi
+        for (int i = words.length-1; i >= 0; i--) {
+            newtext.append(words[i]).append(' ');
+        }
+        System.out.println("Họ và tên sau khi đảo ngược: " + newtext);
+    }
+}
