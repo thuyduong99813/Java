@@ -1,0 +1,11 @@
+package javastring;
+
+public class BT3 {
+    public static void main(String[] args) {
+        //Bài 3: Cho một chuỗi ký tự bất kỳ, hãy đảo ngược chuỗi này.
+        //"khanhtran" -> "narthnahk"
+        String text ="vu thuy duong";
+        String newtext = new StringBuffer(text).reverse().toString();
+        System.out.println("New text: "+newtext);
+    }
+}
