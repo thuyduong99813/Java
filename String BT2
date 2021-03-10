@@ -1,0 +1,21 @@
+package javastring;
+
+import java.util.Locale;
+
+public class BT2 {
+    //Bài 2: Cho một chuỗi có số từ bất kỳ. Hãy chuẩn hóa chuỗi này (ký tu đầu tiên của mỗi từ phải là chữ hoa).
+    //"khanh tran" -> "Khanh Tran"
+    public static void main(String[] args) {
+        String text = "vu thuy duoNG";
+        for (int i = 0; i < text.length() ; i++) {
+            text = String.valueOf(text.toLowerCase());
+        }
+        //Hàm split
+        String[] tmp = text.split(" ");
+        text = " ";
+        for (int i = 0; i < tmp.length; i++) {
+            text = text + String.valueOf(tmp[i].charAt(0)).toUpperCase() + tmp[i].substring(1) + " ";
+        }
+        System.out.println(text);
+    }
+}
