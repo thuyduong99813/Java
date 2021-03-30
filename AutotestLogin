@@ -1,0 +1,105 @@
+package first;
+
+import io.cucumber.java.cy_gb.A;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.*;
+
+
+public class StepDefinitions {
+    WebDriver driver;
+
+    @Before
+    public void OpenWeb()
+    {
+        WebDriverManager.chromedriver().setup();
+        this.driver = new ChromeDriver();
+        this.driver.manage().window().maximize();
+        this.driver.get("https://fado.vn/dang-nhap?redirect=https%3A%2F%2Ffado.vn%2F");
+
+    }
+    @Test
+    public void LoginEmptyUsername()
+    {
+        WebElement txtusername = this.driver.findElement(By.name("email"));
+        WebElement txtpassword = this.driver.findElement(By.name("password"));
+        WebElement btnLogin = this.driver.findElement(By.cssSelector("button[type=\"submit\"]"));
+
+        txtusername.sendKeys("");
+        txtpassword.sendKeys("thuyduong998");
+        btnLogin.click();
+
+        WebElement lbMessUsername = this.driver.findElement(By.cssSelector("label#auth-block__form-group__email-error"));
+        Assert.assertEquals("Vui lòng nhập dữ liệu",lbMessUsername);
+
+    }
+
+
+    @Test
+    public void LoginNotExist() throws InterruptedException {
+        WebElement txtusername = this.driver.findElement(By.name("email"));
+        WebElement txtpassword = this.driver.findElement(By.name("password"));
+        WebElement btnLogin = this.driver.findElement(By.cssSelector("button[type=\"submit\"]"));
+
+        txtusername.sendKeys("thuyduong99812@gmail.com");
+        txtpassword.sendKeys("hi");
+        btnLogin.click();
+
+        Thread.sleep(1000);
+        WebElement lbNoExist = this.driver.findElement(By.cssSelector("div.my-alert.-alert-danger br"));
+        Assert.assertEquals("- Tài khoản không tồn tại, vui lòng kiểm tra lại",lbNoExist);
+
+        //assertThat(lbNoExist.getText(), is("- Tài khoản không tồn tại, vui lòng kiểm tra lại"));
+
+    }
+
+    @Test
+    public void LoginFailed()
+    {
+        WebElement txtusername = this.driver.findElement(By.name("email"));
+        WebElement txtpassword = this.driver.findElement(By.name("password"));
+        WebElement btnLogin = this.driver.findElement(By.cssSelector("button[type=\"submit\"]"));
+
+        txtusername.sendKeys("thuyduong99813@gmail.com");
+        txtpassword.sendKeys("thuyduong");
+        btnLogin.click();
+
+        WebElement lbfail = this.driver.findElement(By.cssSelector("div.my-alert.-alert-danger br"));
+        Assert.assertEquals("- Mật khẩu không đúng, vui lòng kiểm tra lại",lbfail);
+
+    }
+
+    @Test
+    public void LoginPassed()
+    {
+        WebElement txtusername = this.driver.findElement(By.name("email"));
+        WebElement txtpassword = this.driver.findElement(By.name("password"));
+        WebElement btnLogin = this.driver.findElement(By.cssSelector("button[type=\"submit\"]"));
+
+        txtusername.sendKeys("thuyduong99813@gmail.com");
+        txtpassword.sendKeys("thuyduong998");
+        btnLogin.click();
+
+    }
+
+
+    @After
+    public void End()
+    {
+        //this.driver.close();
+    }
+
+
+}
