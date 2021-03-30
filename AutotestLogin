@@ -1,18 +1,18 @@
 package first;
 
+import io.cucumber.java.bs.I;
 import io.cucumber.java.cy_gb.A;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -24,15 +24,29 @@ public class StepDefinitions {
     @Before
     public void OpenWeb()
     {
-        WebDriverManager.chromedriver().setup();
-        this.driver = new ChromeDriver();
+        String browser = "edge";
+        if (browser.equalsIgnoreCase("chrome"))
+        {
+            WebDriverManager.chromedriver().setup();
+            this.driver = new ChromeDriver();
+        }
+        else if (browser.equalsIgnoreCase("Firefox"))
+        {
+            WebDriverManager.firefoxdriver().setup();
+            this.driver = new FirefoxDriver();
+        }
+        else if (browser.equalsIgnoreCase("edge"))
+        {
+            WebDriverManager.edgedriver().setup();
+            this.driver = new EdgeDriver();
+        }
         this.driver.manage().window().maximize();
-        this.driver.get("https://fado.vn/dang-nhap?redirect=https%3A%2F%2Ffado.vn%2F");
 
     }
     @Test
-    public void LoginEmptyUsername()
-    {
+
+    public void LoginEmptyUsername() throws InterruptedException {
+        this.driver.get("https://fado.vn/dang-nhap?redirect=https%3A%2F%2Ffado.vn%2F");
         WebElement txtusername = this.driver.findElement(By.name("email"));
         WebElement txtpassword = this.driver.findElement(By.name("password"));
         WebElement btnLogin = this.driver.findElement(By.cssSelector("button[type=\"submit\"]"));
@@ -42,13 +56,17 @@ public class StepDefinitions {
         btnLogin.click();
 
         WebElement lbMessUsername = this.driver.findElement(By.cssSelector("label#auth-block__form-group__email-error"));
-        Assert.assertEquals("Vui lòng nhập dữ liệu",lbMessUsername);
+        Assert.assertEquals("Vui lòng nhập dữ liệu",lbMessUsername.getText());
+        Thread.sleep(5000);
 
     }
 
 
     @Test
-    public void LoginNotExist() throws InterruptedException {
+
+    public void LoginNotExist() throws InterruptedException
+    {
+        this.driver.get("https://fado.vn/dang-nhap?redirect=https%3A%2F%2Ffado.vn%2F");
         WebElement txtusername = this.driver.findElement(By.name("email"));
         WebElement txtpassword = this.driver.findElement(By.name("password"));
         WebElement btnLogin = this.driver.findElement(By.cssSelector("button[type=\"submit\"]"));
@@ -58,16 +76,21 @@ public class StepDefinitions {
         btnLogin.click();
 
         Thread.sleep(1000);
-        WebElement lbNoExist = this.driver.findElement(By.cssSelector("div.my-alert.-alert-danger br"));
-        Assert.assertEquals("- Tài khoản không tồn tại, vui lòng kiểm tra lại",lbNoExist);
+        WebElement lbNoExist = this.driver.findElement(By.cssSelector("div.my-alert.-alert-danger"));
+       // System.out.println(lbNoExist.getText());
+        Assert.assertEquals("Có lỗi xảy ra:\n" +
+                "- Tài khoản không tồn tại, vui lòng kiểm tra lại",lbNoExist.getText());
+        Thread.sleep(5000);
 
         //assertThat(lbNoExist.getText(), is("- Tài khoản không tồn tại, vui lòng kiểm tra lại"));
 
     }
 
     @Test
-    public void LoginFailed()
+
+    public void LoginFailed() throws InterruptedException
     {
+        this.driver.get("https://fado.vn/dang-nhap?redirect=https%3A%2F%2Ffado.vn%2F");
         WebElement txtusername = this.driver.findElement(By.name("email"));
         WebElement txtpassword = this.driver.findElement(By.name("password"));
         WebElement btnLogin = this.driver.findElement(By.cssSelector("button[type=\"submit\"]"));
@@ -76,14 +99,18 @@ public class StepDefinitions {
         txtpassword.sendKeys("thuyduong");
         btnLogin.click();
 
-        WebElement lbfail = this.driver.findElement(By.cssSelector("div.my-alert.-alert-danger br"));
-        Assert.assertEquals("- Mật khẩu không đúng, vui lòng kiểm tra lại",lbfail);
+        Thread.sleep(3000);
+        WebElement lbfail = this.driver.findElement(By.cssSelector("div.-alert-danger"));
+        //System.out.println(lbfail.getText());
+        Assert.assertEquals("Có lỗi xảy ra:\n" +
+                "- Mật khẩu không đúng, vui lòng kiểm tra lại",lbfail.getText());
+        Thread.sleep(5000);
 
     }
 
     @Test
-    public void LoginPassed()
-    {
+    public void LoginPassed() throws InterruptedException {
+        this.driver.get("https://fado.vn/dang-nhap?redirect=https%3A%2F%2Ffado.vn%2F");
         WebElement txtusername = this.driver.findElement(By.name("email"));
         WebElement txtpassword = this.driver.findElement(By.name("password"));
         WebElement btnLogin = this.driver.findElement(By.cssSelector("button[type=\"submit\"]"));
@@ -91,6 +118,7 @@ public class StepDefinitions {
         txtusername.sendKeys("thuyduong99813@gmail.com");
         txtpassword.sendKeys("thuyduong998");
         btnLogin.click();
+        Thread.sleep(5000);
 
     }
 
@@ -98,7 +126,7 @@ public class StepDefinitions {
     @After
     public void End()
     {
-        //this.driver.close();
+        this.driver.close();
     }
 
 
